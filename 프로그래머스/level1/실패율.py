@@ -1,53 +1,50 @@
-
 def solution(N, stages):
     answer = []
-    numOfPeople = len(stages)
-    for i in range(1, N+1):
+    leftNum = len(stages)
+
+    fail_list = []
+    for i in range(1,N+1):
+
         fail_num = 0
-        for j in range(len(stages)):
-            if stages[j] == i:
+        for n in stages:
+            if n == i:
                 fail_num += 1
 
-        print(i)
-        print(fail_num, numOfPeople)
+        if leftNum <= 0 :
+            fail_list.append(0)
+            continue
+        else:
+            # print(fail_num, leftNum)
+            fail_list.append(float(fail_num)/leftNum)
 
-        if numOfPeople == 0:
-            for j in range(i+1,N+1):
-                answer.append(0)
-            break
-        elif fail_num == numOfPeople:
-            answer.append(1)
-            for j in range(len(answer), N):
-                answer.append(0)
-            break
-        else :
-            answer.append(float(fail_num)/numOfPeople)
-            numOfPeople -= fail_num
+        leftNum -= fail_num
 
+    print(fail_list)
 
+    count = 0
+    fail_index_list = [m for m,value in enumerate(fail_list)]
+    print(fail_index_list)
 
-    result_list = list()
+    for i in range(len(fail_list)):
+        max_value = max(fail_list)
+        max_index = fail_index_list[fail_list.index(max_value)]
 
-    chk_list = [False for i in range(len(stages))]
+        answer.append(max_index+1)
 
-    temp_list = answer[:]
-
-    print(answer)
-
-    for j in range(len(answer)):
-        max_value = max(temp_list)
-        for i, value in enumerate(answer):
-            if value == max_value and chk_list[i] is not True:
-                result_list.append(i+1)
-                chk_list[i] = True
-                break
-
-        temp_list.remove(value)
-
-    return result_list
+        fail_index_list.remove(max_index)
+        fail_list.remove(max_value)
 
 
-stages = [4,4,4,4,4]
+    return answer
+
+
 N = 5
+stages = [2, 1, 2, 6, 2, 4, 3, 3]
+
+N = 4
+stages = [4,4,4,4,4]
+
+# N = 7
+# stages = [5,5,5,5,5,5]
 
 print(solution(N, stages))
