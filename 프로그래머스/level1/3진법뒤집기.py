@@ -13,8 +13,6 @@ def solution(n):
         result.append(n%3)
         n = n//3
 
-    print(result)
-
     while result[0] == 0:
         result.pop(0)
 
