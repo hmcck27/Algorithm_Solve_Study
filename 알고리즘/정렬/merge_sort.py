@@ -12,7 +12,6 @@ def check_sorted(sequence, N):
 
 
 def merge(left, right):
-
     left_index = 0
     right_index = 0
 
@@ -43,6 +42,7 @@ def merge(left, right):
 
     return result_list
 
+
 def merge_sort(sequence, left, right, leftList, rightList):
     # divide and conquer
 
@@ -50,10 +50,10 @@ def merge_sort(sequence, left, right, leftList, rightList):
     if abs(right - left) <= 1:
         return sequence[left: right]
 
-    middle = (right-left) // 2
+    middle = (right - left) // 2
 
     leftList = merge_sort(sequence, left, middle, leftList)
-    rightList = merge_sort(sequence, middle+1, right, rightList)
+    rightList = merge_sort(sequence, middle + 1, right, rightList)
 
     result_list = merge(leftList, rightList)
 
@@ -61,6 +61,7 @@ def merge_sort(sequence, left, right, leftList, rightList):
     print(rightList)
     print(result_list)
     return result_list
+
 
 ## make random integer sequence
 print("making random sequence...")
@@ -75,7 +76,7 @@ sequence = [5, 3, 8, 10, 10, 4, 9, 1, 6, 2, 7]
 start = time.time()
 
 print("now sorting...")
-merge_sort(sequence, 0, N - 1, sequence[0:int(N-1)//2], sequence[int(N-1)//2:N])
+merge_sort(sequence, 0, N - 1, sequence[0:int(N - 1) // 2], sequence[int(N - 1) // 2:N])
 
 end = time.time()
 

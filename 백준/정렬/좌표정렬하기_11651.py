@@ -17,17 +17,17 @@ def left_bigger_sort(array1, array2):
         왼쪽 원소가 더 크면 True
     '''
 
-    if first_element(array1) > first_element(array2):
+    if second_element(array1) > second_element(array2):
         return True
-    elif first_element(array1) == first_element(array2):
-        if second_element(array1) > second_element(array2):
-            return True
-        elif second_element(array1) == second_element(array2):
-            return 'Same'
-        else:
-            return False
-    else :
+    elif second_element(array1) < second_element(array2):
         return False
+    else:
+        if first_element(array1) > first_element(array2):
+            return True
+        elif first_element(array1) < first_element(array2):
+            return False
+        else:
+            return 'Same'
 
 def merge(left, right):
 
