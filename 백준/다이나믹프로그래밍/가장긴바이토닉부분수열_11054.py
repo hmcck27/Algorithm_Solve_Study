@@ -26,9 +26,19 @@ if __name__ == "__main__":
     import sys
     n = int(sys.stdin.readline().rstrip())
     nList = list(map(int, sys.stdin.readline().rstrip().split()))
-    nList = [-1] + nList
-    d = [0] * 1003
-    d[0] = -1
+    nList = [0] + nList
+    max_value = max(nList)
+    # if max_value % 2 == 0:
+    #     max_value += 1
+    d = [0] * (max_value * 2)
+    for i in range(1, n+1):
 
-    for i in range(2, n+1):
-        if nList[i] > nList[i-1]:
+        if nList[i] == max_value:
+            d[nList[i]] = max(d[:nList[i]]) + 1
+        else :
+            d[nList[i]] = max(d[:nList[i]]) + 1
+            d[2*max_value-nList[i]] = max(d[nList[i]+1 : 2*max_value-nList[i]]) + 1
+
+
+
+    print(max(d))
